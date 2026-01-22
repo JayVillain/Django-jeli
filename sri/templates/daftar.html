@@ -1,83 +1,94 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Form Pendaftaran</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<h2>Form Pendaftaran</h2>
+<div class="container">
+    <h2>Form Pendaftaran</h2>
 
-{% if error %}
-<p style="color:red">{{ error }}</p>
-{% endif %}
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
 
-<form method="post">
-    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
 
-    <label>Nama:</label><br>
-    <input type="text" name="nama" value="{{ data.nama|default:'' }}"><br><br>
+        <label>Nama</label>
+        <input type="text" name="nama" value="{{ data.nama|default:'' }}">
 
-    <label>Email:</label><br>
-    <input type="email" name="email" value="{{ data.email|default:'' }}"><br><br>
+        <label>Email</label>
+        <input type="email" name="email" value="{{ data.email|default:'' }}">
 
-    <label>Negara:</label><br>
-    <select name="negara">
-        <option value="">-- pilih negara --</option>
-        {% for n in negara_list %}
-        <option value="{{ n.id }}"
-            {% if data.negara == n.id|stringformat:"s" %}selected{% endif %}>
-            {{ n.nama }}
-        </option>
-        {% endfor %}
-    </select><br><br>
+        <label>Negara</label>
+        <select name="negara">
+            <option value="">-- pilih negara --</option>
+            {% for n in negara_list %}
+                <option value="{{ n.id }}"
+                {% if data.negara == n.id|stringformat:"s" %}selected{% endif %}>
+                    {{ n.nama }}
+                </option>
+            {% endfor %}
+        </select>
 
-    <label>Provinsi:</label><br>
-    <select name="provinsi">
-        <option value="">-- pilih provinsi --</option>
-        {% for p in provinsi_list %}
-        <option value="{{ p.id }}"
-            {% if data.provinsi == p.id|stringformat:"s" %}selected{% endif %}>
-            {{ p.nama }}
-        </option>
-        {% endfor %}
-    </select><br><br>
+        <label>Provinsi</label>
+        <select name="provinsi">
+            <option value="">-- pilih provinsi --</option>
+            {% for p in provinsi_list %}
+                <option value="{{ p.id }}"
+                {% if data.provinsi == p.id|stringformat:"s" %}selected{% endif %}>
+                    {{ p.nama }}
+                </option>
+            {% endfor %}
+        </select>
 
-    <label>Kabupaten:</label><br>
-    <select name="kabupaten">
-        <option value="">-- pilih kabupaten --</option>
-        {% for k in kabupaten_list %}
-        <option value="{{ k.id }}"
-            {% if data.kabupaten == k.id|stringformat:"s" %}selected{% endif %}>
-            {{ k.nama }}
-        </option>
-        {% endfor %}
-    </select><br><br>
+        <label>Kabupaten</label>
+        <select name="kabupaten">
+            <option value="">-- pilih kabupaten --</option>
+            {% for k in kabupaten_list %}
+                <option value="{{ k.id }}"
+                {% if data.kabupaten == k.id|stringformat:"s" %}selected{% endif %}>
+                    {{ k.nama }}
+                </option>
+            {% endfor %}
+        </select>
 
-    <label>Kecamatan:</label><br>
-    <select name="kecamatan">
-        <option value="">-- pilih kecamatan --</option>
-        {% for kc in kecamatan_list %}
-        <option value="{{ kc.id }}"
-            {% if data.kecamatan == kc.id|stringformat:"s" %}selected{% endif %}>
-            {{ kc.nama }}
-        </option>
-        {% endfor %}
-    </select><br><br>
+        <label>Kecamatan</label>
+        <select name="kecamatan">
+            <option value="">-- pilih kecamatan --</option>
+            {% for kc in kecamatan_list %}
+                <option value="{{ kc.id }}"
+                {% if data.kecamatan == kc.id|stringformat:"s" %}selected{% endif %}>
+                    {{ kc.nama }}
+                </option>
+            {% endfor %}
+        </select>
 
-    <label>Desa:</label><br>
-    <select name="desa">
-        <option value="">-- pilih desa --</option>
-        {% for d in desa_list %}
-        <option value="{{ d.id }}"
-            {% if data.desa == d.id|stringformat:"s" %}selected{% endif %}>
-            {{ d.nama }}
-        </option>
-        {% endfor %}
-    </select><br><br>
+        <label>Desa</label>
+        <select name="desa">
+            <option value="">-- pilih desa --</option>
+            {% for d in desa_list %}
+                <option value="{{ d.id }}"
+                {% if data.desa == d.id|stringformat:"s" %}selected{% endif %}>
+                    {{ d.nama }}
+                </option>
+            {% endfor %}
+        </select>
 
-    <button type="submit" name="action" value="filter">Muat Wilayah</button>
-    <button type="submit" name="action" value="save">Simpan</button>
-</form>
+        <div class="button-group">
+            <button type="submit" name="action" value="filter" class="btn-filter">
+                Muat Wilayah
+            </button>
+            <button type="submit" name="action" value="save" class="btn-save">
+                Simpan
+            </button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
