@@ -13,3 +13,5 @@ def daftar(request):
         return redirect('sri:sukses')
 
     return render(request, 'daftar.html')
+def sukses(request):
+    return render(request, 'sukses.html')
