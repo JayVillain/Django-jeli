@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-# Create your views here.
+def daftar(request):
+    if request.method == 'POST':
+        nama = request.POST.get('nama')
+        email = request.POST.get('email')
+
+        if not nama:
+            return render(request, 'daftar.html', {
+                'error': 'Nama wajib diisi'
+            })
+
+        return redirect('sri:sukses')
+
+    return render(request, 'daftar.html')
