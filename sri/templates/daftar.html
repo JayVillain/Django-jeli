@@ -15,16 +15,19 @@
     {% csrf_token %}
 
     <label>Nama:</label><br>
-    <input type="text" name="nama"><br><br>
+    <input type="text" name="nama" value="{{ data.nama|default:'' }}"><br><br>
 
     <label>Email:</label><br>
-    <input type="email" name="email"><br><br>
+    <input type="email" name="email" value="{{ data.email|default:'' }}"><br><br>
 
     <label>Negara:</label><br>
     <select name="negara">
         <option value="">-- pilih negara --</option>
         {% for n in negara_list %}
-            <option value="{{ n.id }}">{{ n.nama }}</option>
+        <option value="{{ n.id }}"
+            {% if data.negara == n.id|stringformat:"s" %}selected{% endif %}>
+            {{ n.nama }}
+        </option>
         {% endfor %}
     </select><br><br>
 
@@ -32,7 +35,10 @@
     <select name="provinsi">
         <option value="">-- pilih provinsi --</option>
         {% for p in provinsi_list %}
-            <option value="{{ p.id }}">{{ p.nama }}</option>
+        <option value="{{ p.id }}"
+            {% if data.provinsi == p.id|stringformat:"s" %}selected{% endif %}>
+            {{ p.nama }}
+        </option>
         {% endfor %}
     </select><br><br>
 
@@ -40,7 +46,10 @@
     <select name="kabupaten">
         <option value="">-- pilih kabupaten --</option>
         {% for k in kabupaten_list %}
-            <option value="{{ k.id }}">{{ k.nama }}</option>
+        <option value="{{ k.id }}"
+            {% if data.kabupaten == k.id|stringformat:"s" %}selected{% endif %}>
+            {{ k.nama }}
+        </option>
         {% endfor %}
     </select><br><br>
 
@@ -48,7 +57,10 @@
     <select name="kecamatan">
         <option value="">-- pilih kecamatan --</option>
         {% for kc in kecamatan_list %}
-            <option value="{{ kc.id }}">{{ kc.nama }}</option>
+        <option value="{{ kc.id }}"
+            {% if data.kecamatan == kc.id|stringformat:"s" %}selected{% endif %}>
+            {{ kc.nama }}
+        </option>
         {% endfor %}
     </select><br><br>
 
@@ -56,7 +68,10 @@
     <select name="desa">
         <option value="">-- pilih desa --</option>
         {% for d in desa_list %}
-            <option value="{{ d.id }}">{{ d.nama }}</option>
+        <option value="{{ d.id }}"
+            {% if data.desa == d.id|stringformat:"s" %}selected{% endif %}>
+            {{ d.nama }}
+        </option>
         {% endfor %}
     </select><br><br>
 
