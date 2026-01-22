@@ -45,6 +45,9 @@ class Pendaftar(models.Model):
     negara = models.ForeignKey(Negara, on_delete=models.SET_NULL, null=True)
     provinsi = models.ForeignKey(Provinsi, on_delete=models.SET_NULL, null=True)
     kabupaten = models.ForeignKey(Kabupaten, on_delete=models.SET_NULL, null=True)
+    kecamatan = models.ForeignKey(Kecamatan, on_delete=models.SET_NULL, null=True)
+    desa = models.ForeignKey(Desa, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.nama
+
