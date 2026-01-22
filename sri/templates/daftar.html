@@ -4,21 +4,48 @@
     <title>Form Pendaftaran</title>
 </head>
 <body>
-    <h2>Form Pendaftaran</h2>
+<h2>Form Pendaftaran</h2>
 
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
 
-    <form method="post">
-        {% csrf_token %}
-        <label>Nama:</label><br>
-        <input type="text" name="nama"><br><br>
+<form method="post">
+    {% csrf_token %}
 
-        <label>Email:</label><br>
-        <input type="email" name="email"><br><br>
+    <label>Nama:</label><br>
+    <input type="text" name="nama"><br><br>
 
-        <button type="submit">Simpan</button>
-    </form>
+    <label>Email:</label><br>
+    <input type="email" name="email"><br><br>
+
+    <label>Negara:</label><br>
+    <select name="negara">
+        <option value="">-- pilih negara --</option>
+        {% for n in negara_list %}
+            <option value="{{ n.id }}">{{ n.nama }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Provinsi:</label><br>
+    <select name="provinsi">
+        <option value="">-- pilih provinsi --</option>
+        {% for p in provinsi_list %}
+            <option value="{{ p.id }}">{{ p.nama }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Kabupaten:</label><br>
+    <select name="kabupaten">
+        <option value="">-- pilih kabupaten --</option>
+        {% for k in kabupaten_list %}
+            <option value="{{ k.id }}">{{ k.nama }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit" name="action" value="filter">Muat Wilayah</button>
+    <button type="submit" name="action" value="save">Simpan</button>
+</form>
+
 </body>
 </html>
