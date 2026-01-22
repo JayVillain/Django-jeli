@@ -1,13 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Landing Page</title>
+    <meta charset="UTF-8">
+    <title>Landing Page UAS - Jelita</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Landing Page UAS - Jelita</h1>
-    <p>Selamat datang</p>
 
-   <a href="/pendaftaran/">Registrasi</a>
-   <a href="/admin/login/">Login</a>
+<div class="hero">
+    <h1>Landing Page UAS - Jelita</h1>
+    <p>Selamat datang di sistem pendaftaran online</p>
+
+    <div class="actions">
+        <a href="/pendaftaran/" class="btn-register">Registrasi</a>
+        <a href="/admin/" class="btn-login">Login</a>
+    </div>
+</div>
+
 </body>
 </html>
