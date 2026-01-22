@@ -23,6 +23,21 @@ class Kabupaten(models.Model):
     def __str__(self):
         return self.nama
 
+class Kecamatan(models.Model):
+    kabupaten = models.ForeignKey(Kabupaten, on_delete=models.CASCADE)
+    nama = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nama
+
+
+class Desa(models.Model):
+    kecamatan = models.ForeignKey(Kecamatan, on_delete=models.CASCADE)
+    nama = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nama
+
 
 class Pendaftar(models.Model):
     nama = models.CharField(max_length=100)
