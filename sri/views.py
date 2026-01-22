@@ -39,3 +39,7 @@ def daftar(request):
         'provinsi_list': provinsi_list,
         'kabupaten_list': kabupaten_list,
     })
+
+
+def sukses(request):
+    return render(request, 'sukses.html')
