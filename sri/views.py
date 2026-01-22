@@ -5,10 +5,12 @@ from .models import (
 )
 
 def daftar(request):
-    selected_negara = request.POST.get('negara')
-    selected_provinsi = request.POST.get('provinsi')
-    selected_kabupaten = request.POST.get('kabupaten')
-    selected_kecamatan = request.POST.get('kecamatan')
+    data = request.POST
+
+    selected_negara = data.get('negara')
+    selected_provinsi = data.get('provinsi')
+    selected_kabupaten = data.get('kabupaten')
+    selected_kecamatan = data.get('kecamatan')
 
     negara_list = Negara.objects.all()
     provinsi_list = Provinsi.objects.filter(
@@ -28,11 +30,11 @@ def daftar(request):
     ) if selected_kecamatan else Desa.objects.none()
 
     if request.method == 'POST':
-        action = request.POST.get('action')
+        action = data.get('action')
 
         if action == 'save':
-            nama = request.POST.get('nama')
-            email = request.POST.get('email')
+            nama = data.get('nama')
+            email = data.get('email')
 
             if not nama:
                 return render(request, 'daftar.html', {
@@ -42,6 +44,7 @@ def daftar(request):
                     'kabupaten_list': kabupaten_list,
                     'kecamatan_list': kecamatan_list,
                     'desa_list': desa_list,
+                    'data': data,
                 })
 
             Pendaftar.objects.create(
@@ -51,18 +54,10 @@ def daftar(request):
                 provinsi_id=selected_provinsi,
                 kabupaten_id=selected_kabupaten,
                 kecamatan_id=selected_kecamatan,
-                desa_id=request.POST.get('desa')
+                desa_id=data.get('desa')
             )
 
             return redirect('sri:sukses')
-
-        return render(request, 'daftar.html', {
-            'negara_list': negara_list,
-            'provinsi_list': provinsi_list,
-            'kabupaten_list': kabupaten_list,
-            'kecamatan_list': kecamatan_list,
-            'desa_list': desa_list,
-        })
 
     return render(request, 'daftar.html', {
         'negara_list': negara_list,
@@ -70,6 +65,7 @@ def daftar(request):
         'kabupaten_list': kabupaten_list,
         'kecamatan_list': kecamatan_list,
         'desa_list': desa_list,
+        'data': data,
     })
 
 
