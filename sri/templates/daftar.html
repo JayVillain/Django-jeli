@@ -4,6 +4,7 @@
     <title>Form Pendaftaran</title>
 </head>
 <body>
+
 <h2>Form Pendaftaran</h2>
 
 {% if error %}
@@ -40,6 +41,22 @@
         <option value="">-- pilih kabupaten --</option>
         {% for k in kabupaten_list %}
             <option value="{{ k.id }}">{{ k.nama }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Kecamatan:</label><br>
+    <select name="kecamatan">
+        <option value="">-- pilih kecamatan --</option>
+        {% for kc in kecamatan_list %}
+            <option value="{{ kc.id }}">{{ kc.nama }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Desa:</label><br>
+    <select name="desa">
+        <option value="">-- pilih desa --</option>
+        {% for d in desa_list %}
+            <option value="{{ d.id }}">{{ d.nama }}</option>
         {% endfor %}
     </select><br><br>
 
